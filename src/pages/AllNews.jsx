@@ -14,7 +14,7 @@ const AllNews = () => {
     const [newsData, setNewsData] = useState([])
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/news?lang=en&country=us&category=world").then(res => {
+        axios.get("https://aconewsbackend.onrender.com/api/news?lang=en&country=us&category=world").then(res => {
             console.log(res.data.articles);
             setNewsData(res.data.articles)
 
@@ -37,7 +37,7 @@ const AllNews = () => {
     }
 
     const handleFilter = () => {
-        axios.get(`http://localhost:5000/api/news?lang=${lang}&country=${country}&category=${category}`).then(res => {
+        axios.get(`https://aconewsbackend.onrender.com/api/news?lang=${lang}&country=${country}&category=${category}`).then(res => {
             console.log(res.data);
             setNewsData(res.data.articles)
         }).catch(err => {

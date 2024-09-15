@@ -11,7 +11,7 @@ const Search = () => {
     const location = useLocation()
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/news?query="${location.pathname.split('/search/')[1]}"`).then(res => {
+        axios.get(`https://aconewsbackend.onrender.com/api/news?query="${location.pathname.split('/search/')[1]}"`).then(res => {
             console.log(res.data.articles);
             setNewsData(res.data.articles)
 

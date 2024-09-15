@@ -11,7 +11,7 @@ const Hero = () => {
     const [newsData, setNewsData] = useState([])
 
     useEffect(() => {
-        axios.get("http://localhost:5000/api/news?lang=en&country=us").then(res => {
+        axios.get("https://aconewsbackend.onrender.com/api/news?lang=en&country=us").then(res => {
             console.log(res.data.articles);
             setNewsData(res.data.articles)
         }).catch(err => {
