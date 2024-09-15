@@ -4,18 +4,22 @@ import pixelPhoto from '../assets/images/Pixel-photo.jpg'
 import timer from '../assets/images/timer.png'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import loader from '../assets/images/loader.gif'
 
 
 
 const Hero = () => {
     const [newsData, setNewsData] = useState([])
+    const [isPreload, setIsPreload] = useState(true)
 
     useEffect(() => {
         axios.get("https://aconewsbackend.onrender.com/api/news?lang=en&country=us").then(res => {
             console.log(res.data.articles);
             setNewsData(res.data.articles)
+            setIsPreload(false)
         }).catch(err => {
             console.log(err);
+            setIsPreload(false)
         })
     }, [])
     const navigate = useNavigate()
@@ -27,6 +31,15 @@ const Hero = () => {
     }
     return (
         <section className='hero'>
+            <div className={isPreload ? "preload active" : "preload"}>
+                <img src={loader} alt="" />
+                <h2>
+                    Please wait some time. News are loading! <br />
+                    <span>
+                        The backend is hosted on Render free plan. And Render spins down the server with inactivity
+                    </span>
+                </h2>
+            </div>
             <div className="container">
                 <h2><span>Latest</span> News</h2>
                 <div className="latestNewsContent">
